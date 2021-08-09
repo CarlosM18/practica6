@@ -175,7 +175,7 @@ function consulta (pedido, respuesta){
 				datos+='<b><font color="red"> Descripcion: </font></b>'+filas[0].descripcion+'<br>';
 				datos+='<b><font color="red"> Precio: </font></b>'+'$'+filas[0].precio+'<hr>';
             }else{
-                datos ='No existe un articulo con dicho código';
+                datos ='No existe un articulo con dicho codigo';
             }
 			respuesta.write('<!doctype html><html><head><link rel="stylesheet" href="style.css"></head>');
 			respuesta.write('<body><div><div class="titulo"><h1>PRODUCTO CONSULTADO</h1></div>');
