@@ -96,9 +96,13 @@ function crear(respuesta) {
         }  
     });
     respuesta.writeHead(200, {'Content-Type': 'text/html'});
-    respuesta.write('<!doctype html><html><head></head><body>'+
-                    'Se creo la tabla con exito<br><a href="index.html">Retornar</a></body></html>');     
-    respuesta.end();    
+    respuesta.write('<!doctype html><html><head><link rel="stylesheet" href="style.css"></head>');
+    respuesta.write('<body><div><div class="titulo"><h1>CREACION DE TABLA</h1></div>'); 
+    respuesta.write('<div class="texto">Se creo la tabla con exito<br>');
+    respuesta.write('<!doctype html><html><head></head><body>');
+    respuesta.write('<a href="index.html">Retornar</a>');  
+    respuesta.write('</div></div></body></html>');  
+    respuesta.end();   
 }
 function alta(pedido,respuesta) {
     var info='';
@@ -118,8 +122,12 @@ function alta(pedido,respuesta) {
           }   
       });       
       respuesta.writeHead(200, {'Content-Type': 'text/html'});
-      respuesta.write('<!doctype html><html><head></head><body>'+
-                    'Se cargo el articulo con exito<br><a href="index.html">Retornar</a></body></html>');     
+      respuesta.write('<!doctype html><html><head><link rel="stylesheet" href="style.css"></head>');
+      respuesta.write('<body><div><div class="titulo"><h1>PRODUCTO AGREGADO</h1></div>'); 
+      respuesta.write('<div class="texto">Se cargo el articulo con exito<br>');
+      respuesta.write('<!doctype html><html><head></head><body>');
+      respuesta.write('<a href="index.html">Retornar</a>');  
+      respuesta.write('</div></div></body></html>');  
       respuesta.end();
     });     
 }
@@ -132,14 +140,17 @@ function listado(respuesta) {
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
         var datos='';
         for(var f=0;f<filas.length;f++){
-            datos+='Codigo:'+filas[f].codigo+'<br>';
-            datos+='Descripcion:'+filas[f].descripcion+'<br>';
-            datos+='Precio:'+filas[f].precio+'<hr>';
+            datos+='<b><font color="red"> Codigo: </font></b>'+filas[f].codigo+'<br>';
+            datos+='<b><font color="red"> Descripcion: </font></b>'+filas[f].descripcion+'<br>';
+            datos+='<b><font color="red"> Precio: </font></b>'+'$'+filas[f].precio+'<br>';
+            datos+='<br>'
         }
-        respuesta.write('<!doctype html><html><head></head><body>');
+        respuesta.write('<!doctype html><html><head><link rel="stylesheet" href="style.css"></head>');
+        respuesta.write('<body><div><div class="titulo"><h1>LISTADO DE PRODUCTOS</h1></div>');
+        respuesta.write('<div class="texto"');
         respuesta.write(datos); 
         respuesta.write('<a href="index.html">Retornar</a>');
-        respuesta.write('</body></html>');
+        respuesta.write('</div></div></body></html>');
         respuesta.end();        
     });
 }
@@ -161,17 +172,20 @@ function consulta (pedido, respuesta){
             respuesta.writeHead(200, {'content-type': 'text/html'});
             var datos ='';
             if (filas.length > 0){
-                datos += 'Descripcion: ' +filas[0].descripcion+ '<br>';
-                datos += 'Precio: ' +filas[0].precio+ '<hr>';
+				datos+='<b><font color="red"> Descripcion: </font></b>'+filas[0].descripcion+'<br>';
+				datos+='<b><font color="red"> Precio: </font></b>'+'$'+filas[0].precio+'<hr>';
             }else{
                 datos ='No existe un articulo con dicho código';
             }
-            respuesta.write(datos);
-            respuesta.write('<br><a href="index.html"> - Retornar - </a>');
-            respuesta.write('</body></html>');
-            respuesta.end();
+			respuesta.write('<!doctype html><html><head><link rel="stylesheet" href="style.css"></head>');
+			respuesta.write('<body><div><div class="titulo"><h1>PRODUCTO CONSULTADO</h1></div>');
+			respuesta.write('<div class="texto">');
+			respuesta.write(datos); 
+			respuesta.write('<a href="index.html">Retornar</a>');
+			respuesta.write('</div></div></body></html>');
+			respuesta.end(); 
         })
     })
 }
 
-console.log('Servidor iniciado en el puerto 3000');
+console.log('Servidor iniciado:3000');
